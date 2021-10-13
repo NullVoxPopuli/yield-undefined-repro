@@ -1,0 +1,23 @@
+<h1>The reproduction</h1>
+
+<button {{on 'click' this.toggle}}>
+  Toggle between spelled correctly and misspelling of yielded value
+</button>
+
+<br>
+
+<pre>
+{{#if this.isOops}}
+  {{!-- a little more than a mis-spelling :D --}}
+  {{yield this.oops to="my-block"}}
+{{else}}
+  {{!-- Working correctly --}}
+  {{yield this.someComponent to="my-block"}}
+{{/if}}
+</pre>
+
+<hr>
+What should you be seeing?<br>
+When `{{this.isOops}}` === true - `undefined` is yielded back to the application template and invoked as a component. There is no error (but I expect there should be). (the bordered area will be empty)
+<br>
+When `{{this.isOops}}` === false - some text should render as the yielded content is spelled correctly, representing a component.
